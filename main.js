@@ -13,12 +13,14 @@ var alpineExpress = function(templatePath, options, callback){
 
 var render = function(templatePath, data, callback) {
     //TODO: Make sure this throws propper errors
-    fs.readFile(templatePath, function(err, data){
-        var template = data.toString();
+    fs.readFile(templatePath, function(err, fileData){
+        var template = fileData.toString();
         for(var key in data){
             var value = data[key];
             template = template.replace('{{' + key + '}}', value);
         }
+
+        callback(template);
 
         //TODO: implement array syntax
     });
